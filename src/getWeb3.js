@@ -55,6 +55,18 @@ let getWeb3 = () => {
               explorerUrl = 'https://sokol.poaexplorer.com'
               console.log('This is Sokol', netId)
               break;
+            case 97:
+              netIdName = 'BSC TestNet'
+              trustApiName = 'https://trust-sokol.herokuapp.com'
+              explorerUrl = 'https://explorer.binance.org/smart-testnet'
+              console.log('This is BSC TestNet', netId)
+              break;
+            case 56:
+              netIdName = 'BSC TestNet'
+              trustApiName = 'https://trust-sokol.herokuapp.com'
+              explorerUrl = 'https://bscscan.com/'
+              console.log('This is BSC Mainnet', netId)
+              break;
             default:
               netIdName = 'Unknown'
               console.log('This is an unknown network.', netId)
