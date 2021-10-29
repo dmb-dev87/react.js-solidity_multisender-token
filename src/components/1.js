@@ -58,7 +58,7 @@ export class FirstStep extends React.Component {
     this.onJsonChange = this.onJsonChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.state ={
-      format: '',
+      format: 'csv',
       placeholder: JSON.stringify(Example),
       tokenAddress: {label: '', value: null}
     }
@@ -71,6 +71,12 @@ export class FirstStep extends React.Component {
   componentDidMount() {
     this.tokenStore.reset()
     this.txStore.reset()
+    this.setState({placeholder: `
+      0xCBA5018De6b2b6F89d84A1F5A68953f07554765e,12
+      0xa6Bf70bd230867c870eF13631D7EFf1AE8Ab85c9,1123.45645
+      0x00b5F428905DEA1a67940093fFeaCeee58cA91Ae,1.049
+      0x00fC79F38bAf0dE21E1fee5AC4648Bc885c1d774,14546      
+    `})
   }
   async onTokenAddress(e){
     if(!e){
@@ -87,18 +93,18 @@ export class FirstStep extends React.Component {
     this.parseCompleted = false;
     if(newFormat === 'csv'){
       this.setState({format: newFormat, placeholder: `
-0xCBA5018De6b2b6F89d84A1F5A68953f07554765e,12
-0xa6Bf70bd230867c870eF13631D7EFf1AE8Ab85c9,1123.45645
-0x00b5F428905DEA1a67940093fFeaCeee58cA91Ae,1.049
-0x00fC79F38bAf0dE21E1fee5AC4648Bc885c1d774,14546
-  `})
-    swal("Information", `Please provide CSV file in comma separated address,balance format one line per address.
-    \nExample:\n 
-0xCBA5018De6b2b6F89d84A1F5A68953f07554765e,12
-0xa6Bf70bd230867c870eF13631D7EFf1AE8Ab85c9,113.45
-0x00b5F428905DEA1a67940093fFeaCeee58cA91Ae,1.049
-0x00fC79F38bAf0dE21E1fee5AC4648Bc885c1d774,14546
-    `, 'info')
+        0xCBA5018De6b2b6F89d84A1F5A68953f07554765e,12
+        0xa6Bf70bd230867c870eF13631D7EFf1AE8Ab85c9,1123.45645
+        0x00b5F428905DEA1a67940093fFeaCeee58cA91Ae,1.049
+        0x00fC79F38bAf0dE21E1fee5AC4648Bc885c1d774,14546
+      `})
+      swal("Information", `Please provide CSV file in comma separated address,balance format one line per address.
+        \nExample:\n 
+        0xCBA5018De6b2b6F89d84A1F5A68953f07554765e,12
+        0xa6Bf70bd230867c870eF13631D7EFf1AE8Ab85c9,113.45
+        0x00b5F428905DEA1a67940093fFeaCeee58cA91Ae,1.049
+        0x00fC79F38bAf0dE21E1fee5AC4648Bc885c1d774,14546
+      `, 'info')
     } else {
       this.setState({format: newFormat, placeholder: JSON.stringify(Example)})
       swal({
@@ -274,10 +280,10 @@ export class FirstStep extends React.Component {
               </div>
             </div>
             <label htmlFor="addresses-with-balances" className="label">Addresses with Balances in
-            <RadioGroup name="format" selectedValue={this.state.format} onChange={this.onSelectFormat}>
+            {/* <RadioGroup name="format" selectedValue={this.state.format} onChange={this.onSelectFormat}>
               <Radio value="json" />JSON
               <Radio value="csv" />CSV
-            </RadioGroup>
+            </RadioGroup> */}
             
             </label>
             <Textarea 
