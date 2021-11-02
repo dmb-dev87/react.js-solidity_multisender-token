@@ -64,6 +64,7 @@ class TokenStore {
       let ethBalance =  await web3.eth.getBalance(this.web3Store.defaultAccount)
       ethBalance = Web3Utils.fromWei(ethBalance)
       this.ethBalance = new BN(ethBalance).toFormat(3)
+      console.log("+++++++++++++++ ethBalance", this.ethBalance);
       return this.ethBalance
     }
     catch(e){
@@ -104,8 +105,9 @@ class TokenStore {
       this.web3Store.getWeb3Promise.then(async () => {
         const web3 = this.web3Store.web3;
         const multisender = new web3.eth.Contract(StormMultiSenderABI, this.proxyMultiSenderAddress);
-        const currentFee = await multisender.methods.currentFee(this.web3Store.defaultAccount).call();
+        const currentFee = await multisender.methods.currentFee(this.web3Store.defaultAccount).call();        
         this.currentFee = Web3Utils.fromWei(currentFee)
+        console.log("+++++++++++++++++++++ currentFee", this.currentFee);
         return this.currentFee
       }) 
     }
@@ -247,8 +249,10 @@ class TokenStore {
     const currentFeeInWei = Web3Utils.toWei(this.currentFee);
     const tx = new BN(standardGasPrice).times(new BN('5000000'))
     const txFeeMiners = tx.times(new BN(this.totalNumberTx))
-    const contractFee = new BN(currentFeeInWei).times(this.totalNumberTx);
-    
+    let contractFee = new BN(currentFeeInWei).times(this.totalNumberTx);
+    if (contractFee === null || contractFee === undefined) {
+      contractFee = 0;
+    }
     return Web3Utils.fromWei(txFeeMiners.plus(contractFee).toString(10))
   }
 
