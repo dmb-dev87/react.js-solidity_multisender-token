@@ -111,7 +111,7 @@
         "type": "address"
       }
     ],
-    "name": "Multisended",
+    "name": "SendRBSToken",
     "type": "event"
   },
   {
