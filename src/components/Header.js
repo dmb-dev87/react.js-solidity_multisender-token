@@ -24,7 +24,6 @@ export class Header extends React.Component {
               <option value="">YourTokens 2</option>
             </select> */}
             <div className="socials">
-            <a href="https://github.com/poanetwork/multisender/issues" target="_blank" className="socials-i socials-i_github"></a>
           </div>
           </form>
         </div>
