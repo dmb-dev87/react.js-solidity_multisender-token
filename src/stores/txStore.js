@@ -68,10 +68,10 @@ class TxStore {
         this.getTxStatus(hash)
   
       })
-      .on('error', (error) => {
-        swal("Error!", error.message, 'error')
-        console.error(error)
-      })
+      // .on('error', (error) => {
+      //   swal("Error!", error.message, 'error')
+      //   console.error(error)
+      // })
     } catch (e){
       console.error(e)
     }
@@ -104,7 +104,6 @@ class TxStore {
     console.log('slice', slice, addresses_to_send[0], balances_to_send[0], addPerTx)
     const web3 = this.web3Store.web3;
     const multisender = new web3.eth.Contract(MultiSenderAbi, proxyMultiSenderAddress);
-
     try {
       let encodedData = await multisender.methods.multisendToken(token_address, addresses_to_send, balances_to_send).encodeABI({from: this.web3Store.defaultAccount})
       let gas = await web3.eth.estimateGas({
@@ -129,10 +128,10 @@ class TxStore {
         `, hash})
         this.getTxStatus(hash)
       })
-      .on('error', (error) => {
-        swal("Error!", error.message, 'error')
-        console.log(error)
-      })
+      // .on('error', (error) => {
+      //   swal("Error!", error.message, 'error')
+      //   console.log(error)
+      // })
       slice--;
       if (slice > 0) {
         this._multisend({slice, addPerTx});
