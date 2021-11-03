@@ -58,13 +58,13 @@ let getWeb3 = () => {
             case 97:
               netIdName = 'BSC TestNet'
               trustApiName = 'https://trust-sokol.herokuapp.com'
-              explorerUrl = 'https://explorer.binance.org/smart-testnet'
+              explorerUrl = 'https://testnet.bscscan.com'
               console.log('This is BSC TestNet', netId)
               break;
             case 56:
-              netIdName = 'BSC TestNet'
+              netIdName = 'BSC MainNet'
               trustApiName = 'https://trust-sokol.herokuapp.com'
-              explorerUrl = 'https://bscscan.com/'
+              explorerUrl = 'https://bscscan.com'
               console.log('This is BSC Mainnet', netId)
               break;
             default:
