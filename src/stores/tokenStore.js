@@ -64,7 +64,6 @@ class TokenStore {
       let ethBalance =  await web3.eth.getBalance(this.web3Store.defaultAccount)
       ethBalance = Web3Utils.fromWei(ethBalance)
       this.ethBalance = new BN(ethBalance).toFormat(3)
-      console.log("+++++++++++++++ ethBalance", this.ethBalance);
       return this.ethBalance
     }
     catch(e){
@@ -107,7 +106,6 @@ class TokenStore {
         const multisender = new web3.eth.Contract(StormMultiSenderABI, this.proxyMultiSenderAddress);
         const currentFee = await multisender.methods.currentFee(this.web3Store.defaultAccount).call();        
         this.currentFee = Web3Utils.fromWei(currentFee)
-        console.log("+++++++++++++++++++++ currentFee", this.currentFee);
         return this.currentFee
       }) 
     }
